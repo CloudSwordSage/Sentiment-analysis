@@ -4,6 +4,7 @@ nlp情感分类
 数据集采用NLpcc 2014, 不放入仓库，自行下载，[链接](https://github.com/DinghaoXi/chinese-sentiment-datasets)
 
 采用Dropout正则，基于准确率的早停法，防止过拟合，已经有训练好的模型，可以直接预测，但由于模型大小超出github限制，无法上传。我将其拆分，克隆后将`model`下的`lstm_model_early_stop`文件夹直接压缩，建议使用`Bandzip`，zip格式压缩，压缩级别选择**仅存储**，注意，压缩的时候连着 `lstm_model_early_stop`**一起压缩**！！！
+最后将后缀改为`.pth`，即可用来预测。
 
 
 |    文件     |    作用    |
