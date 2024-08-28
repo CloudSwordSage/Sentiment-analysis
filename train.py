@@ -353,3 +353,5 @@ plt.ylabel('Entropy')
 plt.legend()
 
 plt.show()
+
+f.close()
