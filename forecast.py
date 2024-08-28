@@ -69,15 +69,19 @@ def index2label(index):
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 class Net(nn.Module):
-    def __init__(self, word_count, embedding_dim, num_layers, hidden_size, output_size):
+    def __init__(self, word_count, embedding_dim, num_layers, hidden_size, output_size, dropout_rate):
         super(Net, self).__init__()
-        self.embedding = nn.Embedding(word_count, embedding_dim)
-        self.lstm = nn.LSTM(embedding_dim, hidden_size, num_layers, batch_first=True, bidirectional=True)
-        self.fc = nn.Linear(hidden_size * 2, output_size)
+        self.embedding = nn.Embedding(word_count, embedding_dim)                                          # 词嵌入
+        self.dropout_emb = nn.Dropout(dropout_rate)                                                       # 词嵌入dropout
+        self.lstm = nn.LSTM(embedding_dim, hidden_size, num_layers, batch_first=True, bidirectional=True) # 双向LSTM
+        self.dropout_lstm = nn.Dropout(dropout_rate)                                                      # LSTM dropout
+        self.fc = nn.Linear(hidden_size * 2, output_size)                                                 # 全连接层
 
     def forward(self, x):
         embedded = self.embedding(x)
+        embedded = self.dropout_emb(embedded)
         lstm_out, _ = self.lstm(embedded)
+        lstm_out = self.dropout_lstm(lstm_out)
         lstm_last_step = lstm_out[:, -1, :]
         logits = self.fc(lstm_last_step)
         return F.log_softmax(logits, dim=1)
@@ -89,7 +93,7 @@ def prediction(text):
     _, max_index = torch.max(probs, dim=1)
     return index2label(max_index.item()), probs[0, max_index.item()].item()
 
-model = torch.load("model/lstm_model.pt").to(DEVICE).eval()
+model = torch.load("model/lstm_model_early_stop.pth").to(DEVICE).eval()
 
 
 

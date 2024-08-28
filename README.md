@@ -3,7 +3,7 @@ nlp情感分类
 
 数据集采用NLpcc 2014, 不放入仓库，自行下载，[链接](https://github.com/DinghaoXi/chinese-sentiment-datasets)
 
-采用Dropout正则，基于准确率的早停法，防止过拟合
+采用Dropout正则，基于准确率的早停法，防止过拟合，已经有训练好的模型，可以直接预测，需要自己解压，采用7z极限压缩
 
 
 |    文件     |    作用    |
