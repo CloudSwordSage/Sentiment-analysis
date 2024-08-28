@@ -308,7 +308,7 @@ try:
         entropy /= len(test_dataset)
         entropy_lst.append(entropy.cpu().item())
         entropy = round(entropy.cpu().item(), 4)
-        entropy_change = entropy - last_entropy
+        entropy_change = round(entropy - last_entropy, 4)
         change = '+' if entropy_change > 0 else ''
         entropy_change = change + str(entropy_change)
 
