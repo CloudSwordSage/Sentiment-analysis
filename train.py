@@ -25,7 +25,11 @@ while True:
     else:
         break
 
-f = open(log_file, 'w', encoding='utf-8')
+LOG_FILE = log_file
+
+def log_write(content):
+    with open(LOG_FILE, 'a', encoding='utf-8') as f:
+        f.write(str(content).strip() + '\n')
 
 df = pd.read_csv("dataset/train.csv")
 
@@ -111,20 +115,20 @@ EPOCH = 700                                                           # 训练�
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu') # 设备
 SAVE_INTERVAL = 100                                                   # 保存模型间隔
 
-f.write('=='*20 + 'Hyperparameters:' + '=='*20 + '\n')
-f.write(f"BATCH SIZE: {BATCH_SIZE}\n")
-f.write(f"OUTPUT: {OUTPUT}\n")
-f.write(f"WORD COUNT: {WORD_COUNT}\n")
-f.write(f"EMBEDDING DIM: {EMBEDDING_DIM}\n")
-f.write(f"HIDDEN SIZE: {HIDDEN_SIZE}\n")
-f.write(f"NUM LAYERS: {NUM_LAYERS}\n")
-f.write(f"DROPOUT RATE: {DROPOUT_RATE:.2%}\n")
-f.write(f"LR: {LR}\n")
-f.write(f"PATIENCE: {PATIENCE}\n")
-f.write(f"MIN DELTA: {MIN_DELTA}\n")
-f.write(f"EPOCH: {EPOCH}\n")
-f.write(f"DEVICE: {str(DEVICE)}\n")
-f.write(f'SAVE INTERVAL: {SAVE_INTERVAL}\n')
+log_write('=='*20 + 'Hyperparameters:' + '=='*20 + '\n')
+log_write(f"BATCH SIZE: {BATCH_SIZE}\n")
+log_write(f"OUTPUT: {OUTPUT}\n")
+log_write(f"WORD COUNT: {WORD_COUNT}\n")
+log_write(f"EMBEDDING DIM: {EMBEDDING_DIM}\n")
+log_write(f"HIDDEN SIZE: {HIDDEN_SIZE}\n")
+log_write(f"NUM LAYERS: {NUM_LAYERS}\n")
+log_write(f"DROPOUT RATE: {DROPOUT_RATE:.2%}\n")
+log_write(f"LR: {LR}\n")
+log_write(f"PATIENCE: {PATIENCE}\n")
+log_write(f"MIN DELTA: {MIN_DELTA}\n")
+log_write(f"EPOCH: {EPOCH}\n")
+log_write(f"DEVICE: {str(DEVICE)}\n")
+log_write(f'SAVE INTERVAL: {SAVE_INTERVAL}\n')
 
 def pad_and_tensorize(batch):  
     """
@@ -201,9 +205,9 @@ optimizer = optim.Adam(model.parameters(), lr=LR)
 scaler = GradScaler() # 定义GradScaler对象
 criterion = nn.NLLLoss()
 
-f.write('=='*20 + 'Model structure' + '=='*20 + '\n')
-f.write(f"MODEL:\n{repr(model)}\n")
-f.write('=='*20 + 'Log' + '=='*20 + '\n')
+log_write('=='*20 + 'Model structure' + '=='*20 + '\n')
+log_write(f"MODEL:\n{repr(model)}\n")
+log_write('=='*20 + 'Log' + '=='*20 + '\n')
 
 class EarlyStopping():  
     def __init__(self, patience=5, min_delta=0.001):  
@@ -233,7 +237,7 @@ class EarlyStopping():
         else:
             self.counter += 1
             tqdm.write(f"[{datetime.datetime.now():%H:%M:%S}] [WARN]: Early stopping counter {self.counter} of {self.patience}")
-            f.write(f"[{datetime.datetime.now():%H:%M:%S}] [WARN]: Early stopping counter {self.counter} of {self.patience}\n")
+            log_write(f"[{datetime.datetime.now():%H:%M:%S}] [WARN]: Early stopping counter {self.counter} of {self.patience}\n")
             if self.counter >= self.patience:
                 self.early_stop = True
         return self.early_stop
@@ -296,7 +300,7 @@ try:
 
         if early_stopping(acc):
             tqdm.write(f'[{datetime.datetime.now():%H:%M:%S}] [FATAL]: Early stopping, Saving model as [model/lstm_model_early_stop.pth]')
-            f.write(f'[{datetime.datetime.now():%H:%M:%S}] [FATAL]: Early stopping, Saving model as [model/lstm_model_early_stop.pth]\n')
+            log_write(f'[{datetime.datetime.now():%H:%M:%S}] [FATAL]: Early stopping, Saving model as [model/lstm_model_early_stop.pth]\n')
             early_stop = True
             torch.save(model, 'model/lstm_model_early_stop.pth')
             break
@@ -311,21 +315,21 @@ try:
         text = f'[{datetime.datetime.now():%H:%M:%S}] [INFO]: Epoch: {epoch + 1}, Train Loss: {train_loss:.4f}, Test Loss: {test_loss:.4f}, '
         text += f'Accuracy: {acc:.2%}, Entropy: {entropy} ({entropy_change})'
         tqdm.write(text)
-        f.write(text + '\n')
+        log_write(text + '\n')
         
         last_entropy = entropy
         if (epoch + 1) % SAVE_INTERVAL == 0: # 每隔一定epoch保存一次模型
             tqdm.write(f'[{datetime.datetime.now():%H:%M:%S}] [INFO]: Saving model as [model/model_{epoch + 1}.pth]')
-            f.write(f'[{datetime.datetime.now():%H:%M:%S}] [INFO]: Saving model as [model/model_{epoch + 1}.pth]\n')
+            log_write(f'[{datetime.datetime.now():%H:%M:%S}] [INFO]: Saving model as [model/model_{epoch + 1}.pth]\n')
             torch.save(model, f'model/model_{epoch + 1}.pth')
 except Exception as e:
     print(f'[{datetime.datetime.now():%H:%M:%S}] [FATAL]: Error caught: {e}, STOP!!!!!  Saving model as [model/lstm_model_Error_Caught.pth]')
-    f.write(f'[{datetime.datetime.now():%H:%M:%S}] [FATAL]: Error caught: {e}, STOP!!!!!  Saving model as [model/lstm_model_Error_Caught.pth]\n')
+    log_write(f'[{datetime.datetime.now():%H:%M:%S}] [FATAL]: Error caught: {e}, STOP!!!!!  Saving model as [model/lstm_model_Error_Caught.pth]\n')
     torch.save(model, 'model/lstm_model_Error_Caught.pth')
 
 if not early_stop:
     print(f'[{datetime.datetime.now():%H:%M:%S}] [INFO]: Training completed without early stopping. Saving model as [model/lstm_model.pth]')
-    f.write(f'[{datetime.datetime.now():%H:%M:%S}] [INFO]: Training completed without early stopping. Saving model as [model/lstm_model.pth]\n')
+    log_write(f'[{datetime.datetime.now():%H:%M:%S}] [INFO]: Training completed without early stopping. Saving model as [model/lstm_model.pth]\n')
     torch.save(model, 'model/lstm_model.pth')
 
 plt.figure(figsize=(10, 10))
@@ -353,5 +357,3 @@ plt.ylabel('Entropy')
 plt.legend()
 
 plt.show()
-
-f.close()
