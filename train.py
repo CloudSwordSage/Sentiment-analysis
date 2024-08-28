@@ -26,8 +26,18 @@ while True:
         break
 
 LOG_FILE = log_file
+open(LOG_FILE, 'w', encoding='utf-8').close()
 
 def log_write(content):
+    """
+    将传入的content写入日志文件LOG_FILE中，每次写入后会添加换行符。
+    
+    Args:
+        content (Union[str, Any]): 要写入的内容，支持str和其他可以被转换成str的类型。
+    
+    Returns:
+        None
+    """
     with open(LOG_FILE, 'a', encoding='utf-8') as f:
         f.write(str(content).strip() + '\n')
 
@@ -228,6 +238,16 @@ class EarlyStopping():
         self.early_stop = False
 
     def __call__(self, val_accuracy):  
+        """
+        根据当前验证集准确率判断是否需要提前停止训练。
+        
+        Args:
+            val_accuracy (float): 当前验证集准确率。
+        
+        Returns:
+            bool: 若达到提前停止的条件则返回True，否则返回False。
+        
+        """
         if self.best_accuracy is None:
             self.best_accuracy = val_accuracy
         elif val_accuracy - self.best_accuracy > self.min_delta:
