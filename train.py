@@ -236,6 +236,7 @@ class EarlyStopping():
             f.write(f"[{datetime.datetime.now():%H:%M:%S}] [WARN]: Early stopping counter {self.counter} of {self.patience}\n")
             if self.counter >= self.patience:
                 self.early_stop = True
+        return self.early_stop
 
 early_stopping = EarlyStopping(patience=PATIENCE, min_delta=MIN_DELTA)
 
