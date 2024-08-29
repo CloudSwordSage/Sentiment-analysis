@@ -1,0 +1,109 @@
+========================================Hyperparameters========================================
+BATCH SIZE: 128
+OUTPUT: 8
+WORD COUNT: 71617
+EMBEDDING DIM: 300
+HIDDEN SIZE: 256
+NUM LAYERS: 5
+DROPOUT RATE: 30.00%
+LR: 0.001
+PATIENCE: 10
+MIN DELTA: 0.0001
+EPOCH: 700
+DEVICE: cuda
+SAVE INTERVAL: 100
+========================================Model structure========================================
+MODEL:
+Net(
+  (embedding): Embedding(71617, 300)
+  (dropout_emb): Dropout(p=0.3, inplace=False)
+  (lstm): LSTM(300, 256, num_layers=5, batch_first=True, bidirectional=True)
+  (dropout_lstm): Dropout(p=0.3, inplace=False)
+  (fc): Linear(in_features=512, out_features=8, bias=True)
+)
+========================================Log========================================
+[23:56:40] [INFO]: Epoch: 1, Train Loss: 1.3207, Test Loss: 1.5018, Accuracy: 54.23%, Entropy: 0.01 (+0.01)
+[23:58:13] [WARN]: Early stopping counter 1 of 10
+[23:58:13] [INFO]: Epoch: 2, Train Loss: 1.2855, Test Loss: 1.4131, Accuracy: 54.23%, Entropy: 0.01 (0.0)
+[23:59:45] [INFO]: Epoch: 3, Train Loss: 1.2165, Test Loss: 1.3104, Accuracy: 54.82%, Entropy: 0.0092 (-0.0008)
+[00:01:16] [INFO]: Epoch: 4, Train Loss: 1.1205, Test Loss: 1.3118, Accuracy: 58.29%, Entropy: 0.0068 (-0.0024)
+[00:02:48] [INFO]: Epoch: 5, Train Loss: 1.0284, Test Loss: 1.1113, Accuracy: 61.34%, Entropy: 0.0076 (+0.0008)
+[00:04:21] [INFO]: Epoch: 6, Train Loss: 0.9385, Test Loss: 0.9932, Accuracy: 65.68%, Entropy: 0.0078 (+0.0002)
+[00:05:52] [INFO]: Epoch: 7, Train Loss: 0.8533, Test Loss: 0.9193, Accuracy: 67.71%, Entropy: 0.0069 (-0.0009)
+[00:07:23] [INFO]: Epoch: 8, Train Loss: 0.7698, Test Loss: 0.8524, Accuracy: 71.95%, Entropy: 0.0053 (-0.0016)
+[00:08:55] [INFO]: Epoch: 9, Train Loss: 0.6855, Test Loss: 0.7507, Accuracy: 75.22%, Entropy: 0.005 (-0.0003)
+[00:10:28] [INFO]: Epoch: 10, Train Loss: 0.6130, Test Loss: 0.7162, Accuracy: 77.62%, Entropy: 0.0042 (-0.0008)
+[00:12:00] [INFO]: Epoch: 11, Train Loss: 0.5456, Test Loss: 0.6430, Accuracy: 80.06%, Entropy: 0.0037 (-0.0005)
+[00:13:31] [INFO]: Epoch: 12, Train Loss: 0.4824, Test Loss: 0.6125, Accuracy: 81.61%, Entropy: 0.0032 (-0.0005)
+[00:15:03] [INFO]: Epoch: 13, Train Loss: 0.4349, Test Loss: 0.5365, Accuracy: 84.28%, Entropy: 0.0025 (-0.0007)
+[00:16:36] [INFO]: Epoch: 14, Train Loss: 0.3908, Test Loss: 0.5052, Accuracy: 85.37%, Entropy: 0.0025 (0.0)
+[00:18:08] [INFO]: Epoch: 15, Train Loss: 0.3437, Test Loss: 0.4324, Accuracy: 87.70%, Entropy: 0.0022 (-0.0003)
+[00:19:40] [WARN]: Early stopping counter 1 of 10
+[00:19:40] [INFO]: Epoch: 16, Train Loss: 0.3087, Test Loss: 0.4428, Accuracy: 87.52%, Entropy: 0.0019 (-0.0003)
+[00:21:12] [INFO]: Epoch: 17, Train Loss: 0.2778, Test Loss: 0.4610, Accuracy: 88.21%, Entropy: 0.0016 (-0.0003)
+[00:22:44] [INFO]: Epoch: 18, Train Loss: 0.2557, Test Loss: 0.4478, Accuracy: 88.82%, Entropy: 0.0015 (-0.0001)
+[00:24:17] [INFO]: Epoch: 19, Train Loss: 0.2193, Test Loss: 0.4062, Accuracy: 90.00%, Entropy: 0.0012 (-0.0003)
+[00:25:48] [INFO]: Epoch: 20, Train Loss: 0.2069, Test Loss: 0.4006, Accuracy: 90.44%, Entropy: 0.0011 (-0.0001)
+[00:27:20] [INFO]: Epoch: 21, Train Loss: 0.1878, Test Loss: 0.3830, Accuracy: 90.64%, Entropy: 0.0011 (0.0)
+[00:28:52] [INFO]: Epoch: 22, Train Loss: 0.1761, Test Loss: 0.3750, Accuracy: 91.33%, Entropy: 0.001 (-0.0001)
+[00:30:25] [WARN]: Early stopping counter 1 of 10
+[00:30:25] [INFO]: Epoch: 23, Train Loss: 0.1589, Test Loss: 0.4282, Accuracy: 90.20%, Entropy: 0.001 (0.0)
+[00:31:56] [INFO]: Epoch: 24, Train Loss: 0.1542, Test Loss: 0.3939, Accuracy: 91.53%, Entropy: 0.0008 (-0.0002)
+[00:33:29] [INFO]: Epoch: 25, Train Loss: 0.1398, Test Loss: 0.3973, Accuracy: 91.74%, Entropy: 0.0008 (0.0)
+[00:35:01] [INFO]: Epoch: 26, Train Loss: 0.1271, Test Loss: 0.4173, Accuracy: 91.76%, Entropy: 0.0007 (-0.0001)
+[00:36:33] [INFO]: Epoch: 27, Train Loss: 0.1151, Test Loss: 0.3872, Accuracy: 93.02%, Entropy: 0.0006 (-0.0001)
+[00:38:05] [WARN]: Early stopping counter 1 of 10
+[00:38:05] [INFO]: Epoch: 28, Train Loss: 0.1135, Test Loss: 0.3817, Accuracy: 92.25%, Entropy: 0.0007 (+0.0001)
+[00:39:37] [WARN]: Early stopping counter 2 of 10
+[00:39:37] [INFO]: Epoch: 29, Train Loss: 0.1057, Test Loss: 0.4705, Accuracy: 91.08%, Entropy: 0.0006 (-0.0001)
+[00:41:11] [WARN]: Early stopping counter 3 of 10
+[00:41:11] [INFO]: Epoch: 30, Train Loss: 0.1061, Test Loss: 0.3947, Accuracy: 92.23%, Entropy: 0.0007 (+0.0001)
+[00:42:44] [WARN]: Early stopping counter 4 of 10
+[00:42:44] [INFO]: Epoch: 31, Train Loss: 0.0948, Test Loss: 0.3891, Accuracy: 91.94%, Entropy: 0.0007 (0.0)
+[00:44:15] [WARN]: Early stopping counter 5 of 10
+[00:44:15] [INFO]: Epoch: 32, Train Loss: 0.0892, Test Loss: 0.3889, Accuracy: 92.74%, Entropy: 0.0005 (-0.0002)
+[00:45:48] [WARN]: Early stopping counter 6 of 10
+[00:45:48] [INFO]: Epoch: 33, Train Loss: 0.0881, Test Loss: 0.4487, Accuracy: 91.16%, Entropy: 0.0007 (+0.0002)
+[00:47:20] [WARN]: Early stopping counter 7 of 10
+[00:47:20] [INFO]: Epoch: 34, Train Loss: 0.0853, Test Loss: 0.3963, Accuracy: 92.33%, Entropy: 0.0005 (-0.0002)
+[00:48:52] [INFO]: Epoch: 35, Train Loss: 0.0849, Test Loss: 0.3481, Accuracy: 93.61%, Entropy: 0.0005 (0.0)
+[00:50:23] [WARN]: Early stopping counter 1 of 10
+[00:50:23] [INFO]: Epoch: 36, Train Loss: 0.0787, Test Loss: 0.3371, Accuracy: 93.30%, Entropy: 0.0005 (0.0)
+[00:51:56] [WARN]: Early stopping counter 2 of 10
+[00:51:56] [INFO]: Epoch: 37, Train Loss: 0.0750, Test Loss: 0.3561, Accuracy: 92.72%, Entropy: 0.0006 (+0.0001)
+[00:53:29] [INFO]: Epoch: 38, Train Loss: 0.0753, Test Loss: 0.3419, Accuracy: 93.76%, Entropy: 0.0005 (-0.0001)
+[00:55:01] [WARN]: Early stopping counter 1 of 10
+[00:55:01] [INFO]: Epoch: 39, Train Loss: 0.0678, Test Loss: 0.3887, Accuracy: 92.87%, Entropy: 0.0005 (0.0)
+[00:56:34] [WARN]: Early stopping counter 2 of 10
+[00:56:34] [INFO]: Epoch: 40, Train Loss: 0.0674, Test Loss: 0.3811, Accuracy: 92.86%, Entropy: 0.0005 (0.0)
+[00:58:07] [WARN]: Early stopping counter 3 of 10
+[00:58:07] [INFO]: Epoch: 41, Train Loss: 0.0644, Test Loss: 0.3691, Accuracy: 93.45%, Entropy: 0.0005 (0.0)
+[00:59:38] [WARN]: Early stopping counter 4 of 10
+[00:59:38] [INFO]: Epoch: 42, Train Loss: 0.0633, Test Loss: 0.4521, Accuracy: 92.25%, Entropy: 0.0005 (0.0)
+[01:01:10] [WARN]: Early stopping counter 5 of 10
+[01:01:10] [INFO]: Epoch: 43, Train Loss: 0.0643, Test Loss: 0.3595, Accuracy: 93.22%, Entropy: 0.0005 (0.0)
+[01:02:42] [WARN]: Early stopping counter 6 of 10
+[01:02:42] [INFO]: Epoch: 44, Train Loss: 0.0620, Test Loss: 0.3992, Accuracy: 92.91%, Entropy: 0.0004 (-0.0001)
+[01:04:15] [WARN]: Early stopping counter 7 of 10
+[01:04:15] [INFO]: Epoch: 45, Train Loss: 0.0582, Test Loss: 0.3773, Accuracy: 93.27%, Entropy: 0.0005 (+0.0001)
+[01:05:47] [INFO]: Epoch: 46, Train Loss: 0.0584, Test Loss: 0.3351, Accuracy: 94.10%, Entropy: 0.0004 (-0.0001)
+[01:07:18] [WARN]: Early stopping counter 1 of 10
+[01:07:18] [INFO]: Epoch: 47, Train Loss: 0.0568, Test Loss: 0.4420, Accuracy: 92.89%, Entropy: 0.0004 (0.0)
+[01:08:51] [WARN]: Early stopping counter 2 of 10
+[01:08:51] [INFO]: Epoch: 48, Train Loss: 0.0532, Test Loss: 0.3935, Accuracy: 93.35%, Entropy: 0.0004 (0.0)
+[01:10:23] [WARN]: Early stopping counter 3 of 10
+[01:10:23] [INFO]: Epoch: 49, Train Loss: 0.0532, Test Loss: 0.3752, Accuracy: 93.69%, Entropy: 0.0004 (0.0)
+[01:11:56] [WARN]: Early stopping counter 4 of 10
+[01:11:56] [INFO]: Epoch: 50, Train Loss: 0.0514, Test Loss: 0.3768, Accuracy: 93.53%, Entropy: 0.0004 (0.0)
+[01:13:27] [WARN]: Early stopping counter 5 of 10
+[01:13:27] [INFO]: Epoch: 51, Train Loss: 0.0517, Test Loss: 0.3824, Accuracy: 93.30%, Entropy: 0.0004 (0.0)
+[01:14:59] [WARN]: Early stopping counter 6 of 10
+[01:14:59] [INFO]: Epoch: 52, Train Loss: 0.0518, Test Loss: 0.4662, Accuracy: 92.69%, Entropy: 0.0003 (-0.0001)
+[01:16:32] [WARN]: Early stopping counter 7 of 10
+[01:16:32] [INFO]: Epoch: 53, Train Loss: 0.0485, Test Loss: 0.3658, Accuracy: 94.04%, Entropy: 0.0004 (+0.0001)
+[01:18:05] [WARN]: Early stopping counter 8 of 10
+[01:18:05] [INFO]: Epoch: 54, Train Loss: 0.0505, Test Loss: 0.5044, Accuracy: 92.10%, Entropy: 0.0004 (0.0)
+[01:19:36] [WARN]: Early stopping counter 9 of 10
+[01:19:36] [INFO]: Epoch: 55, Train Loss: 0.0483, Test Loss: 0.3936, Accuracy: 93.46%, Entropy: 0.0004 (0.0)
+[01:21:09] [WARN]: Early stopping counter 10 of 10
+[01:21:09] [FATAL]: Early stopping, Saving model as [model/lstm_model_early_stop.pth]
